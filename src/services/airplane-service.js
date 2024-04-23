@@ -10,10 +10,9 @@ async function createAirplane(data){
         return airplane;
     }
     catch (error){
-        console.log('hbfb');
+    
         if(error.name='SequelizeValidationError')
         {
-            console.log('hbfb');
             let explanation=[];
             error.errors.forEach((error) => {
                 explanation.push(error.message);
@@ -26,6 +25,17 @@ async function createAirplane(data){
     }
 }
 
+async function getAllAirplane(){
+    try{
+        const airplane=await airplaneRepsoitory.getAll( );
+        return airplane;
+    }
+    catch (error){
+        throw new AppError('cannot get all airplanes',StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
 module.exports={
- createAirplane
+ createAirplane,
+ getAllAirplane
 }

@@ -11,4 +11,9 @@ router.post('/',
 AirplaneMiddleware.validateCreateRequest, 
 AirplaneController.createAirplane);
 
+router.get('/',
+AirplaneController.getAllAirplane);
+
+
+
 module.exports=router;
