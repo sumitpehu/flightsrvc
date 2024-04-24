@@ -47,8 +47,54 @@ async function getAllAirplane(req,res){
   }
 }
 
+async function getAirplane(req,res){
+  try{
+
+        const airplane=await AirplaneService.getAirplane(req.params.id);
+      
+      SuccessResponse.data=airplane;
+        return res
+        .status(StatusCodes.OK)
+        .json(SuccessResponse);
+        
+  }
+  catch(error)
+  {
+  
+    ErrorResponse.error=error; 
+      return res
+        .status(error.statusCode)
+        .json(ErrorResponse);
+
+  }
+}
+
+async function removeAirplane(req,res){
+  try{
+
+        const response=await AirplaneService.removeAirplane(req.params.id);
+      
+      SuccessResponse.data=response;
+        return res
+        .status(StatusCodes.OK)
+        .json(SuccessResponse);
+        
+  }
+  catch(error)
+  {
+  
+    ErrorResponse.error=error; 
+      return res
+        .status(error.statusCode)
+        .json(ErrorResponse);
+
+  }
+}
+
 module.exports={
     createAirplane,
-    getAllAirplane
+    getAllAirplane,
+    getAirplane,
+    removeAirplane
 }
 
